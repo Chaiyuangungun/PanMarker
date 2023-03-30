@@ -205,7 +205,7 @@ def stat_var_vs_exp(in_var, out_stat):
                 data = line.strip().split()
                 exp_db[data[0]] = float(data[1]) #np.log2(float(data[1])+1)
     geneid = in_var.replace("var_file/","").replace(".var","")
-    if in_type == "prm" or in_type == "cds" :
+    if in_type == "prm"  :
         prm = {}
         with open(exp,"r") as f:
             for line in f:

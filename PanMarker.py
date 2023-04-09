@@ -427,7 +427,7 @@ def filter(out_file):
             pvalues.append(pvalue)
     pvalues.sort()
     posnum = len(pvalues)
-    min = pvalues[int(posnum*0.01)]  
+    min = pvalues[int(posnum*0.05)]  
     print(min)    
     with open(out_file+".out","w") as f2:
         f2.write("#Geneid\tPOS\tTYPE\tREF\tALT\tValid_ref_count\tValid_alt_count\tTtest_pvalue\n")

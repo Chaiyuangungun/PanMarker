@@ -402,7 +402,7 @@ with open(out_file+".result","w") as f:
     f.write("#Geneid\tPOS\tTYPE\tREF\tALT\t")
     for id in sample_list:
         f.write(id+"\t")
-    f.write("Valid_ref_count\tValid_alt_count\tTtest_pvalue\n") 
+        f.write("Levene_pvalue\tTtest_pvalue\tValid_ref_count\tValid_alt_count\n") 
 type = args.type    
 if type == "cds" :
     person =  trait(exp,phe)

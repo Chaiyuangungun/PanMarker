@@ -239,6 +239,8 @@ def stat_var_vs_exp(in_var, out_stat):
                 else:
                     ref_list = []
                     alt_list = []
+                    ref_name = []
+                    alt_name = []
                     for i in range(4, len(data)):
                         if idx_db[i] not in exp_db:
                             continue
@@ -249,8 +251,15 @@ def stat_var_vs_exp(in_var, out_stat):
                     # remove outliers with grubbs test
                     if len(ref_list) < 2 or len(alt_list) < 2:
                         continue
-                    ref_list = grubbs.test(np.array(ref_list), alpha=0.05)
-                    alt_list = grubbs.test(np.array(alt_list), alpha=0.05)
+                    if grubbs == "T":
+                        ref_list = grubbs.test(np.array(ref_list), alpha=0.05)
+                        alt_list = grubbs.test(np.array(alt_list), alpha=0.05)
+                    for val in ref_list:
+                        key=list(exp_db.keys())[list(exp_db.values()).index(val)]
+                        ref_name.append(key)
+                    for val in alt_list:
+                        key=list(exp_db.keys())[list(exp_db.values()).index(val)]
+                        alt_name.append(key)
                     if len(ref_list) == 1 or len(alt_list) == 1:
                         continue
                     levene_val = levene(ref_list, alt_list).pvalue
@@ -267,11 +276,11 @@ def stat_var_vs_exp(in_var, out_stat):
                     #elif np.average(ref_list) < np.average(alt_list) and max(ref_list) < min(alt_list):
                     #    is_write = True
                     if in_type == "cds":
-                        if t_pval <= 0.05  and abs(person[geneid]) >= 0.3:#and is_write:
-                            fout.write("%s\t%.4f\t%.30f\t%d\t%d\n"%(line.strip(), levene_val, t_pval, len(ref_list), len(alt_list)))
+                        if t_pval <= 0.05  and abs(person[geneid]) >= pervalue:#and is_write:
+                            fout.write("%s\t%.4f\t%.30f\t%d|%s\t%d|%s\n"%(line.strip(), levene_val, t_pval, len(ref_list),(','.join(map(str, ref_name))),len(alt_list),(','.join(map(str, alt_name)))))
                     elif in_type == "prm":  
                         if t_pval <= 0.05 :
-                            fout.write("%s\t%.4f\t%.30f\t%d\t%d\n"%(line.strip(), levene_val, t_pval, len(ref_list), len(alt_list)))
+                            fout.write("%s\t%.4f\t%.30f\t%d|%s\t%d|%s\n"%(line.strip(), levene_val, t_pval, len(ref_list),(','.join(map(str, ref_name))),len(alt_list),(','.join(map(str, alt_name)))))
                     #fout.write("%s\t%.4f\t%.30f\t%d\t%d\n"%(line.strip(), levene_val, t_pval, len(ref_list), len(alt_list)))
 
 ######################
@@ -359,14 +368,18 @@ parser.add_argument("-p","--phe",help="phenotype", type=str)
 parser.add_argument("-e","--exp",help="express", type=str,required=True)
 parser.add_argument("-s","--type",help="Type(cds or prm)", type=str,required=True)
 parser.add_argument("-o","--output",help="output file name", type=str,required=True)
+parser.add_argument("-g","--grubbs",help="T or F", type=str,required=True)
+parser.add_argument("-a","--pervalue",help="Pearson Correlation Coefficient",type=float,default=0.3)
 args = parser.parse_args()
 out_file = args.output
 inputfile = args.inputfile
 thread_num = args.threat
 exp = args.exp
 phe = args.phe
+grubbs = args.grubbs
+pervalue = args.pervalue
 samples,genelist = get_sample(inputfile)
-write_genefasta(samples,genelist)
+#write_genefasta(samples,genelist)
 folder1 = os.path.exists("var_file")
 folder2 = os.path.exists("stat_file")
 folder3 = os.path.exists("aln_file")

@@ -5,7 +5,7 @@
 
 1、Use cds
 
-        python3 PanMarker.py -i cds.file -p trait.file -e FPKM.file -s cds -o prefix【-t num 】
+        python3 PanMarker.py -i cds.file -p trait.file -e FPKM.file -s cds -o prefix -g T\F【-t num -a person_cor】
 
 trait.file :
 
@@ -31,7 +31,7 @@ FPKM.file :
 
 2、Use prm
 
-        python3 PanMarker.py -i prm.file -p FPKMsfile -s prm -o prefix【-t num】
+        python3 PanMarker.py -i prm.file -p FPKMsfile -s prm -o prefix -g T\F【-t num】
 
 3、result
 

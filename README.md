@@ -8,6 +8,15 @@ software
 Python Modules
         
         outlier-utils
+
+# Installation
+
+        cd /path/to/install
+        git clone https://github.com/Chaiyuangungun/PanMarker.git
+        chmod +x PanMarker/get_promoter_and_cds.py
+        echo 'export PATH=/path/to/install/PanMarker:$PATH' >> ~/.bash_profile
+        source ~/.bash_profile
+    
 # Usage
 
 1、Mapping reference cds to all genomes in pan-genome

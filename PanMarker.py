@@ -251,7 +251,7 @@ def stat_var_vs_exp(in_var, out_stat):
                     # remove outliers with grubbs test
                     if len(ref_list) < 2 or len(alt_list) < 2:
                         continue
-                    if grubbs == "T":
+                    if grubbs_new == "T":
                         ref_list = grubbs.test(np.array(ref_list), alpha=0.05)
                         alt_list = grubbs.test(np.array(alt_list), alpha=0.05)
                     for val in ref_list:
@@ -376,7 +376,7 @@ inputfile = args.inputfile
 thread_num = args.threat
 exp = args.exp
 phe = args.phe
-grubbs = args.grubbs
+grubbs_new = args.grubbs
 pervalue = args.pervalue
 samples,genelist = get_sample(inputfile)
 #write_genefasta(samples,genelist)

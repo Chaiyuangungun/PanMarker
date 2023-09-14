@@ -379,7 +379,7 @@ phe = args.phe
 grubbs_new = args.grubbs
 pervalue = args.pervalue
 samples,genelist = get_sample(inputfile)
-#write_genefasta(samples,genelist)
+write_genefasta(samples,genelist)
 folder1 = os.path.exists("var_file")
 folder2 = os.path.exists("stat_file")
 folder3 = os.path.exists("aln_file")
@@ -402,7 +402,7 @@ with open(out_file+".result","w") as f:
     f.write("#Geneid\tPOS\tTYPE\tREF\tALT\t")
     for id in sample_list:
         f.write(id+"\t")
-        f.write("Levene_pvalue\tTtest_pvalue\tValid_ref_count\tValid_alt_count\n") 
+    f.write("Levene_pvalue\tTtest_pvalue\tValid_ref_count\tValid_alt_count\n") 
 type = args.type    
 if type == "cds" :
     person =  trait(exp,phe)

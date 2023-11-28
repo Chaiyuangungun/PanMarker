@@ -41,6 +41,7 @@ If you want to identify cds sequence variants and correlate with phenotype and g
         python3 PanMarker.py -i cds.file -p trait.file -e FPKM.file -s cds -o prefix -g T\F【-t num -a person_cor】
         
         Parameters: 
+        
                 -i INPUTFILE, --inputfile  input file(cds  file list)
                 -p PHE, --phe              phenotype file
                 -e EXP, --exp              expression profile
@@ -50,15 +51,16 @@ If you want to identify cds sequence variants and correlate with phenotype and g
                 -t THREAT, --threat        Number of threads (default=10）
                 -a PERVALUE --pervalue     Pearson correlation coefficient(default=0.3)
         Tips: 
+        
         trait.file :
 
-        sample1 value1
+                sample1 value1
 
-        sample2 value2
+                sample2 value2
 
-        ...
+                ...     ...
 
-        sampleN valueN
+                sampleN valueN
 
         FPKM.file :
 
@@ -77,6 +79,7 @@ If you want to identify promoter sequence variants and correlate with gene expre
         python3 PanMarker.py -i prm.file -p FPKM.file -s prm -o prefix -g T\F【-t num】
         
         Parameters:
+        
                 -i INPUTFILE, --inputfile  input file(prm file list)
                 -p PHE, --phe              expression profile
                 -s TYPE --type             file type, cds or prm

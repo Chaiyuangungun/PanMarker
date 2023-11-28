@@ -46,7 +46,7 @@ def aln(geneid) :
     in_aln = "aln_file/"+geneid+".aln"
     run = "mafft --adjustdirection genelist_file/"+geneid+" > aln_file/"+geneid+".aln"
     os.system(run)
-    os.system("rm genelist_file/"+geneid)
+    #os.system("rm genelist_file/"+geneid)
     out_var = in_aln.replace("aln","var")
     try:
         extract_var(in_aln, out_var)
@@ -56,10 +56,10 @@ def aln(geneid) :
         extract_var(in_aln, out_var)
     except:
         print(in_aln+" do not have various")
-    os.system("rm "+in_aln)  
+    #os.system("rm "+in_aln)  
     out_stat = out_var.replace("var","stat")
     stat_var_vs_exp(out_var,out_stat)
-    os.system("rm "+out_var)   
+    #os.system("rm "+out_var)   
     write(out_stat,out_file)        
             
 ####################

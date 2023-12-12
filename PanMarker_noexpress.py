@@ -197,32 +197,13 @@ def extract_var(in_aln, out_stat):
 
 def stat_var_vs_exp(in_var, out_stat):
     in_type = args.type 
-    if in_type == "cds" :
+    if in_type == "cds" or  in_type == "prm" :
         in_exp = phe
         exp_db = {}
         with open(in_exp, 'r') as fin:
             for line in fin:
                 data = line.strip().split()
                 exp_db[data[0]] = float(data[1]) #np.log2(float(data[1])+1)
-    geneid = in_var.replace("var_file/","").replace(".var","")
-    if in_type == "prm"  :
-        prm = {}
-        with open(exp,"r") as f:
-            for line in f:
-                if "Gene_id" in line:
-                    geneids = line.strip().split()[1:]
-                    for num in range(len(geneids)):
-                        geneid = geneids[num]
-                        prm[geneid] = {}
-                else:
-                    lines = line.strip().split()
-                    sampleid = lines[0]
-                    for num in range(len(geneids)):
-                        geneid = geneids[num]
-                        FPKM = float(lines[num+1])
-                        prm[geneid][sampleid] = FPKM
-        geneid = in_var.replace("var_file/","").replace(".var","")
-        exp_db = prm[geneid]
     with open(in_var, 'r') as fin:
         with open(out_stat, 'w') as fout:
             idx_db = {}

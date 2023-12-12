@@ -87,6 +87,35 @@ If you want to identify promoter sequence variants and correlate with gene expre
                 -g GRU, --gru              T or F,Ture or False, whether to perform phenotype outlier filtering
                 -t THREAT, --threat        Number of threads (int,default=10）
                 -a PERVALUE --pervalue     Pearson correlation coefficient(float,default=0.3)
+
+If you don't have expression data, run command below:
+        
+        python3 PanMarker_noexpress.py -i cds.file -p FPKM.file -s cds -o prefix -g T\F【-t num】
+        
+        or
+        
+        python3 PanMarker_noexpress.py -i prm.file -p FPKM.file -s prm -o prefix -g T\F【-t num】
+
+        Parameters: 
+        
+                -i INPUTFILE, --inputfile  input file(cds  file list)
+                -p PHE, --phe              phenotype file
+                -s TYPE --type             file type, cds or prm
+                -o OUTPUT, --output        output file prefix
+                -g GRU, --gru              T or F,Ture or False, whether to perform phenotype outlier filtering
+                -t THREAT, --threat        Number of threads (default=10）
+                -a PERVALUE --pervalue     Pearson correlation coefficient(default=0.3)
+        Tips: 
+        
+        trait.file :
+
+                sample1 value1
+
+                sample2 value2
+
+                ...     ...
+
+                sampleN valueN
         
 2、result(output files)
 

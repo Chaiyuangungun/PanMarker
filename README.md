@@ -88,6 +88,8 @@ If you want to identify promoter sequence variants and correlate with gene expre
                 -t THREAT, --threat        Number of threads (int,default=10）
                 -a PERVALUE --pervalue     Pearson correlation coefficient(float,default=0.3)
 
+        you can also identify TF sites variants by PanTFBS(https://github.com/Chaiyuangungun/PanTFBS)
+
 If you don't have expression data, run command below:
         
         python3 PanMarker_noexpress.py -i cds.file -p FPKM.file -s cds -o prefix -g T\F【-t num】

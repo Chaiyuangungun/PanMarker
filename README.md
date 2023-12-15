@@ -13,9 +13,11 @@ Python Modules
 
         cd /path/to/install
         git clone https://github.com/Chaiyuangungun/PanMarker.git
+        conda env create -g PanMarker.yml
         chmod +x PanMarker/get_promoter_and_cds.py
         echo 'export PATH=/path/to/install/PanMarker:$PATH' >> ~/.bash_profile
         source ~/.bash_profile
+        conda activate PanMarker
     
 # Usage
 
